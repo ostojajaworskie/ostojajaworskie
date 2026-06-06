@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ostoja Jaworskie | Domki Letniskowe w Stryszawie</title>
+    <style>
+        :root {
+            --primary: #2c4a3e; /* Deep forest green */
+            --primary-dark: #1b3027;
+            --accent: #d4a373; /* Warm wooden tone */
+            --accent-hover: #c39262;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-main:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Sections General */
+        section {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Features / Amenities */
+        .amenities {
+            background-color: #fff;
+        }
+
+        .grid-amenities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .amenity-card {
+            padding: 30px 20px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            border-bottom: 4px solid transparent;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .amenity-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .amenity-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Reviews Block */
+        .reviews {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .reviews h2 {
+            color: white;
+        }
+
+        .review-rating {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .review-stars {
+            font-size: 1.8rem;
+            color: #ffc107;
+            margin-bottom: 30px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .review-box {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .review-box p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        /* Contact & Pricing */
+        .contact-section {
+            background-color: #fff;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            text-align: left;
+        }
+
+        .direct-box {
+            background-color: #f1f5f2;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px dashed var(--primary);
+        }
+
+        .direct-box h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .promo-tag {
+            background-color: var(--primary);
+            color: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .phone-link {
+            display: inline-block;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: color 0.3s;
+        }
+
+        .phone-link:hover {
+            color: var(--accent);
+        }
+
+        .channels {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .channels a {
+            color: #003580; /* Booking color brand */
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            border: 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #adb5bd;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--primary);
+        }
+
+        /* Responsive UI Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            header h1 { font-size: 2.3rem; }
+            header p { font-size: 1.1rem; }
+            .about-grid, .contact-container { grid-template-columns: 1fr; }
+            section { padding: 60px 5%; }
+            .phone-link { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu Nawigacyjne -->
+    <nav>
+        <a href="#" class="logo">Ostoja Jaworskie</a>
+        <ul class="nav-links">
+            <li><a href="#o-nas">O nas</a></li>
+            <li><a href="#atuty">Udogodnienia</a></li>
+            <li><a href="#opinie">Opinie</a></li>
+            <li><a href="#kontakt">Rezerwacja</a></li>
+        </ul>
+    </nav>
+
+    <!-- Główny Baner (Hero) -->
+    <header>
+        <h1>Ostoja Jaworskie</h1>
+        <p>Komfortowe domki całoroczne w Beskidach z zapierającym dech widokiem na pasmo Jałowca</p>
+        <a href="#kontakt" class="btn-main">Zarezerwuj bezpośrednio</a>
+    </header>
+
+    <!-- Sekcja O nas -->
+    <section id="o-nas">
+        <h2>Poczuj Magię Beskidów</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Zapraszamy do wyjątkowego miejsca na mapie Stryszawy, gdzie absolutna cisza miesza się z kojącym szumem drzew i widokiem na malownicze pasma górskie. Ostoja Jaworskie powstała z myślą o osobach poszukujących prawdziwego resetu od codziennego pędu życia miejskiego.</p>
+                <p>Nasze nowoczesne domki letniskowe łączą w sobie przytulny, tradycyjny klimat z kompletnym wyposażeniem najwyższej jakości. Spędź klimatyczny wieczór przy trzaskającym ogniu z kominka lub zorganizuj niezapomniane ognisko pod rozgwieżdżonym niebem.</p>
+            </div>
+            <div class="about-image">
+                <!-- Zastąp poniższy link własnym zdjęciem domków / widoku -->
+                <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=800&q=80" alt="Widok na domki Ostoja Jaworskie">
+            </div>
+        </div>
+    </section>
+
+    <!-- Atuty i Udogodnienia -->
+    <section id="atuty" class="amenities">
+        <h2>Co czeka na Ciebie na miejscu?</h2>
+        <div class="grid-amenities">
+            <div class="amenity-card">
+                <div class="icon">🏔️</div>
+                <h3>Czysta Natura</h3>
+                <p>Bezpośredni, urzekający widok na górskie szczyty oraz niezakłócony spokój z dala od sąsiadów.</p>
+            </div>
+            <div class="amenity-card">
+                <div class="icon">🔥</div>
+                <h3>Kominek & Ognisko</h3>
+                <p>Przytulny salon z kozą grzewczą. Drewno oraz profesjonalna podpałka są zawsze przygotowane.</p>
+            </div>
+            <div class="amenity-card">
+                <div class="icon">🐾</div>
+                <h3>Przyjazne Psom</h3>
+                <p>Nie wyobrażasz sobie wyjazdu bez ukochanego czworonoga? U nas Twoje zwierzaki są pełnoprawnymi gośćmi.</p>
+            </div>
+            <div class="amenity-card">
+                <div class="icon">🏡</div>
+                <h3>Pełne Wyposażenie</h3>
+                <p>Kompletnie urządzona kuchnia, lśniąca czystością łazienka, szybkie Wi-Fi i bezpieczny, darmowy parking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opinie Klientów z Google & Booking -->
+    <section id="opinie" class="reviews">
+        <h2>Uwielbiane przez Gości</h2>
+        <div class="review-rating">4.9 / 5</div>
+        <div class="review-stars">★★★★★</div>
+        
+        <div class="review-grid">
+            <div class="review-box">
+                <p>"Cudowne miejsce na odpoczynek. Widok na pasmo Jałowca zapiera dech w piersiach, a w domkach jest absolutnie wszystko, czego potrzeba. Czystość na najwyższym poziomie!"</p>
+                <div class="review-author">— Anna M. (Opinia Google)</div>
+            </div>
+            <div class="review-box">
+                <p>"Kominek robi niesamowity klimat wieczorami, a przygotowane zapasy drewna to strzał w dziesiątkę. Do tego ogromny plus za bezproblemowe przyjęcie nas z dużym psem."</p>
+                <div class="review-author">— Tomasz K. (Opinia Booking)</div>
+            </div>
+            <div class="review-box">
+                <p>"Idealna baza wypadowa na szlaki, a po powrocie błogi relaks na leżakach. Gospodarze dbają o każdy, nawet najmniejszy detal. Wrócimy tu na pewno!"</p>
+                <div class="review-author">— Karolina i Piotr (Opinia Google)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rezerwacja i Kontakt -->
+    <section id="kontakt" class="contact-section">
+        <h2>Zaplanuj Swój Pobyt</h2>
+        <div class="contact-container">
+            
+            <div class="direct-box">
+                <span class="promo-tag">Gwarancja Najniższej Ceny</span>
+                <h3>Zarezerwuj Telefonicznie</h3>
+                <p>Omiń prowizje portali rezerwacyjnych! Zadzwoń do nas bezpośrednio i uzyskaj najlepszą ofertę cenową oraz elastyczne warunki pobytu.</p>
+                
+                <!-- Klikalny bezpośredni numer telefonu -->
+                <a href="tel:+48663859029" class="phone-link">📱 +48 663 859 029</a>
+                
+                <p><strong>Adres:</strong> Stryszawa 629, 34-205 Stryszawa</p>
+                
+                <div class="channels">
+                    Możesz nas znaleźć również na platformie <a href="https://www.booking.com" target="_blank">Booking.com</a>
+                </div>
+            </div>
+
+            <div class="map-box">
+                <!-- Interaktywna mapa Google z lokalizacją Stryszawy -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2581.332306306634!2d19.4674753!3d49.6857147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47169fb69650b289%3A0xc346d0a790adbf9c!2sOstoja%20Jaworskie!5e0!3m2!1spl!2spl!4v1710000000000!3m2!1spl!2spl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stopka Strony -->
+    <footer>
+        <p>&copy; 2026 Ostoja Jaworskie - Wszystkie prawa zastrzeżone. Projekt i realizacja prosto z Beskidów.</p>
+    </footer>
+
+</body>
+</html>
